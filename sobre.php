@@ -4,501 +4,349 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Sobre - Planning Poker</title>
-    <link rel="stylesheet" href="css/style.css">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
     <style>
-        .sobre-container {
-            max-width: 900px;
-            margin: 0 auto;
-        }
-        
-        .nav-bar {
-            background: white;
-            padding: 15px 20px;
-            border-radius: 10px;
-            margin-bottom: 20px;
-            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
-        
-        .nav-bar h1 {
-            margin: 0;
-            color: #667eea;
-            font-size: 24px;
-        }
-        
-        .nav-link {
-            text-decoration: none;
-            color: #667eea;
-            font-weight: 600;
-            padding: 10px 20px;
-            border: 2px solid #667eea;
-            border-radius: 5px;
-            transition: all 0.3s;
-        }
-        
-        .nav-link:hover {
-            background: #667eea;
-            color: white;
-        }
-        
-        .content-section {
-            background: white;
-            padding: 30px;
-            border-radius: 10px;
-            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-            margin-bottom: 20px;
-        }
-        
-        .content-section h2 {
-            color: #667eea;
-            margin-bottom: 20px;
-            font-size: 28px;
-            border-bottom: 3px solid #667eea;
-            padding-bottom: 10px;
-        }
-        
-        .content-section h3 {
-            color: #764ba2;
-            margin-top: 25px;
-            margin-bottom: 15px;
-            font-size: 20px;
-        }
-        
-        .content-section p {
-            line-height: 1.8;
-            color: #555;
-            margin-bottom: 15px;
-        }
-        
-        .content-section ul, .content-section ol {
-            line-height: 1.8;
-            color: #555;
-            margin-left: 20px;
-            margin-bottom: 15px;
-        }
-        
-        .content-section li {
-            margin-bottom: 10px;
-        }
-        
-        .highlight-box {
-            background: linear-gradient(135deg, #667eea15 0%, #764ba215 100%);
-            border-left: 4px solid #667eea;
-            padding: 20px;
-            border-radius: 5px;
-            margin: 20px 0;
-        }
-        
-        .scale-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 15px;
-            margin: 20px 0;
-        }
-        
-        .scale-item {
-            background: #f9fafb;
-            border: 2px solid #e0e0e0;
-            border-radius: 8px;
-            padding: 15px;
-            transition: all 0.3s;
-        }
-        
-        .scale-item:hover {
-            border-color: #667eea;
-            transform: translateY(-2px);
-            box-shadow: 0 4px 8px rgba(102, 126, 234, 0.2);
-        }
-        
-        .scale-value {
-            font-size: 32px;
-            font-weight: bold;
-            color: #667eea;
-            margin-bottom: 10px;
-        }
-        
-        .scale-title {
-            font-weight: 600;
-            color: #333;
-            margin-bottom: 5px;
-        }
-        
-        .scale-description {
-            font-size: 14px;
-            color: #666;
-        }
-        
-        .step-number {
-            display: inline-flex;
-            align-items: center;
-            justify-content: center;
-            width: 35px;
-            height: 35px;
-            background: #667eea;
-            color: white;
-            border-radius: 50%;
-            font-weight: bold;
-            margin-right: 10px;
-        }
-        
-        .benefits-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-            gap: 20px;
-            margin: 20px 0;
-        }
-        
-        .benefit-item {
-            text-align: center;
-            padding: 20px;
-        }
-        
-        .benefit-icon {
-            font-size: 48px;
-            margin-bottom: 10px;
-        }
-        
-        .benefit-title {
-            font-weight: 600;
-            color: #667eea;
-            margin-bottom: 5px;
-        }
-        
-        .flow-diagram {
-            background: white;
-            padding: 20px;
-            border: 2px dashed #667eea;
-            border-radius: 10px;
-            margin: 20px 0;
-        }
-        
-        .flow-step {
-            display: flex;
-            align-items: center;
-            margin: 15px 0;
-            padding: 15px;
-            background: #f9fafb;
-            border-radius: 8px;
-        }
-        
-        .flow-arrow {
-            text-align: center;
-            color: #667eea;
-            font-size: 24px;
-            margin: 10px 0;
-        }
-        
-        @media (max-width: 768px) {
-            .nav-bar {
-                flex-direction: column;
-                text-align: center;
-            }
-            
-            .nav-link {
-                margin-top: 10px;
-            }
-            
-            .scale-grid {
-                grid-template-columns: 1fr;
-            }
-        }
+        :root { --primary: #667eea; --secondary: #764ba2; }
+        body { background: #f8f9fa; color: #333; }
+        .navbar-custom { background: linear-gradient(135deg, var(--primary) 0%, var(--secondary) 100%); }
+        .hero { background: linear-gradient(135deg, var(--primary) 0%, var(--secondary) 100%); color: white; padding: 60px 20px; text-align: center; }
+        .hero h1 { font-size: 48px; font-weight: 700; margin-bottom: 10px; }
+        .hero p { font-size: 18px; opacity: 0.95; }
+        .section-title { color: var(--primary); font-weight: 700; margin: 40px 0 30px; text-align: center; font-size: 36px; border-bottom: 3px solid var(--primary); padding-bottom: 15px; }
+        .card { border: none; border-radius: 15px; box-shadow: 0 5px 15px rgba(0,0,0,0.1); }
+        .card-header { background: linear-gradient(135deg, var(--primary) 0%, var(--secondary) 100%); color: white; border-radius: 15px 15px 0 0; border: none; }
+        .scale-card { background: white; border: 2px solid #e0e0e0; border-radius: 12px; padding: 20px; text-align: center; transition: all 0.3s; }
+        .scale-card:hover { border-color: var(--primary); transform: translateY(-5px); box-shadow: 0 8px 20px rgba(102, 126, 234, 0.2); }
+        .scale-value { font-size: 40px; font-weight: 700; color: var(--primary); }
+        .scale-title { font-weight: 600; margin: 10px 0 5px; }
+        .scale-description { font-size: 14px; color: #666; line-height: 1.5; }
+        .highlight-box { background: linear-gradient(135deg, rgba(102, 126, 234, 0.1) 0%, rgba(118, 75, 162, 0.1) 100%); border-left: 4px solid var(--primary); padding: 20px; border-radius: 10px; margin: 20px 0; }
+        .step-box { background: white; border-radius: 10px; padding: 20px; margin: 15px 0; border-left: 4px solid var(--primary); }
+        .step-number { display: inline-flex; align-items: center; justify-content: center; width: 40px; height: 40px; background: var(--primary); color: white; border-radius: 50%; font-weight: 700; margin-right: 15px; font-size: 18px; }
+        .benefit-card { text-align: center; padding: 20px; background: white; border-radius: 10px; }
+        .benefit-icon { font-size: 48px; color: var(--primary); margin-bottom: 10px; }
+        .role-card { background: white; border-radius: 10px; padding: 25px; margin-bottom: 20px; border-left: 4px solid var(--primary); }
+        .btn-custom { background: var(--primary); border: none; color: white; font-weight: 600; padding: 12px 30px; border-radius: 10px; }
+        .btn-custom:hover { background: var(--secondary); color: white; }
+        .back-link { background: white; padding: 20px; border-radius: 10px; margin-bottom: 30px; box-shadow: 0 2px 5px rgba(0,0,0,0.05); }
+        .back-link a { color: var(--primary); text-decoration: none; font-weight: 600; font-size: 16px; }
+        .back-link a:hover { text-decoration: underline; }
     </style>
 </head>
 <body>
-    <div class="container sobre-container">
-        <div class="nav-bar">
-            <h1>📚 Sobre o Planning Poker</h1>
-            <a href="index.php" class="nav-link">← Voltar ao Início</a>
+    <nav class="navbar navbar-dark navbar-custom">
+        <div class="container-lg">
+            <span class="navbar-brand"><i class="fas fa-chess"></i> Planning Poker</span>
         </div>
-        
-        <div class="content-section">
-            <h2>O que é Planning Poker?</h2>
-            <p>
-                <strong>Planning Poker</strong> (também conhecido como Scrum Poker) é uma técnica gamificada de estimativa ágil 
-                baseada em consenso, amplamente utilizada por equipes Scrum e ágeis para estimar o esforço ou tamanho relativo 
-                de histórias de usuário, tarefas ou itens do backlog.
-            </p>
-            
-            <div class="highlight-box">
-                <p><strong>💡 Objetivo:</strong> Obter estimativas mais precisas através da sabedoria coletiva da equipe, 
-                evitando vieses de ancoragem e incentivando discussões produtivas sobre o trabalho a ser realizado.</p>
+    </nav>
+
+    <div class="hero">
+        <h1><i class="fas fa-book-open"></i> Sobre o Planning Poker</h1>
+        <p>Conheça a técnica revolucionária para estimativas ágeis</p>
+    </div>
+
+    <div class="container-lg py-5">
+        <div class="back-link">
+            <a href="index.php"><i class="fas fa-arrow-left"></i> Voltar ao Início</a>
+        </div>
+
+        <!-- O que é Planning Poker -->
+        <div class="card mb-5">
+            <div class="card-header">
+                <h3 class="mb-0"><i class="fas fa-question-circle"></i> O que é Planning Poker?</h3>
             </div>
-            
-            <h3>Por que usar Planning Poker?</h3>
-            <div class="benefits-grid">
-                <div class="benefit-item">
-                    <div class="benefit-icon">🎯</div>
-                    <div class="benefit-title">Estimativas Precisas</div>
-                    <p>Combina perspectivas de toda a equipe</p>
+            <div class="card-body p-5">
+                <p class="lead mb-4">
+                    <strong>Planning Poker</strong> (também conhecido como Scrum Poker) é uma técnica gamificada de estimativa ágil baseada em consenso, amplamente utilizada por equipes Scrum para estimar o esforço de histórias de usuário.
+                </p>
+
+                <div class="highlight-box">
+                    <h5><i class="fas fa-lightbulb"></i> Objetivo Principal</h5>
+                    <p class="mb-0">Obter estimativas mais precisas através da sabedoria coletiva da equipe, evitando vieses de ancoragem e incentivando discussões produtivas.</p>
                 </div>
-                <div class="benefit-item">
-                    <div class="benefit-icon">💬</div>
-                    <div class="benefit-title">Discussões Ricas</div>
-                    <p>Promove conversas sobre complexidade</p>
-                </div>
-                <div class="benefit-item">
-                    <div class="benefit-icon">⚡</div>
-                    <div class="benefit-title">Rápido</div>
-                    <p>Estimativas eficientes em grupo</p>
-                </div>
-                <div class="benefit-item">
-                    <div class="benefit-icon">🤝</div>
-                    <div class="benefit-icon">Engajamento</div>
-                    <p>Todos participam ativamente</p>
+
+                <h4 class="mt-4 mb-3">Por que usar Planning Poker?</h4>
+                <div class="row g-3">
+                    <div class="col-md-6 col-lg-3">
+                        <div class="benefit-card">
+                            <div class="benefit-icon"><i class="fas fa-bullseye"></i></div>
+                            <h5>Precisão</h5>
+                            <p class="small text-muted">Combina perspectivas da equipe</p>
+                        </div>
+                    </div>
+                    <div class="col-md-6 col-lg-3">
+                        <div class="benefit-card">
+                            <div class="benefit-icon"><i class="fas fa-comments"></i></div>
+                            <h5>Discussões</h5>
+                            <p class="small text-muted">Promove conversas ricas</p>
+                        </div>
+                    </div>
+                    <div class="col-md-6 col-lg-3">
+                        <div class="benefit-card">
+                            <div class="benefit-icon"><i class="fas fa-tachometer-alt"></i></div>
+                            <h5>Rapidez</h5>
+                            <p class="small text-muted">Estimativas eficientes</p>
+                        </div>
+                    </div>
+                    <div class="col-md-6 col-lg-3">
+                        <div class="benefit-card">
+                            <div class="benefit-icon"><i class="fas fa-handshake"></i></div>
+                            <h5>Engajamento</h5>
+                            <p class="small text-muted">Todos participam</p>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
-        
-        <div class="content-section">
-            <h2>Nossa Escala de Pontuação</h2>
-            <p>
-                Utilizamos uma escala adaptada baseada em analogias do mundo real para facilitar o entendimento 
-                e a estimativa. Cada pontuação representa um nível de complexidade e esforço:
-            </p>
-            
-            <div class="scale-grid">
-                <div class="scale-item">
+
+        <!-- Escala de Pontuação -->
+        <h2 class="section-title"><i class="fas fa-chart-bar"></i> Nossa Escala de Pontuação</h2>
+        <p class="text-center mb-4">Utilizamos uma escala baseada em analogias do mundo real para facilitar o entendimento:</p>
+
+        <div class="row g-3 mb-5">
+            <div class="col-md-6 col-lg-4">
+                <div class="scale-card">
                     <div class="scale-value">0.5</div>
                     <div class="scale-title">Apertar Parafuso</div>
-                    <div class="scale-description">
-                        Tarefa trivial, extremamente simples. Pode ser feita em minutos sem necessidade de planejamento.
-                        Exemplo: Corrigir um texto, ajustar uma cor.
-                    </div>
+                    <div class="scale-description">Tarefa trivial, extremamente simples. Pode ser feita em minutos.</div>
                 </div>
-                
-                <div class="scale-item">
+            </div>
+            <div class="col-md-6 col-lg-4">
+                <div class="scale-card">
                     <div class="scale-value">1</div>
                     <div class="scale-title">Trocar Lâmpada</div>
-                    <div class="scale-description">
-                        Tarefa pequena com esforço mínimo. Clara e direta, sem complexidade técnica significativa.
-                        Exemplo: Adicionar um campo em formulário, atualizar texto.
-                    </div>
+                    <div class="scale-description">Tarefa pequena com esforço mínimo. Clara e direta.</div>
                 </div>
-                
-                <div class="scale-item">
+            </div>
+            <div class="col-md-6 col-lg-4">
+                <div class="scale-card">
                     <div class="scale-value">3</div>
-                    <div class="scale-title">Trocar Alguns Pisos</div>
-                    <div class="scale-description">
-                        Mais trabalho envolvido, mas com pouca complexidade. Requer algumas horas de desenvolvimento.
-                        Exemplo: Criar uma nova tela simples, implementar validação básica.
-                    </div>
+                    <div class="scale-title">Trocar Pisos</div>
+                    <div class="scale-description">Mais trabalho, pouca complexidade. Requer algumas horas.</div>
                 </div>
-                
-                <div class="scale-item">
+            </div>
+            <div class="col-md-6 col-lg-4">
+                <div class="scale-card">
                     <div class="scale-value">5</div>
                     <div class="scale-title">Construir Banheiro</div>
-                    <div class="scale-description">
-                        Tarefa complexa com múltiplos componentes. Envolve diferentes partes do sistema e requer planejamento.
-                        Exemplo: Implementar autenticação, criar API completa.
-                    </div>
+                    <div class="scale-description">Tarefa complexa com múltiplos componentes. Requer planejamento.</div>
                 </div>
-                
-                <div class="scale-item">
+            </div>
+            <div class="col-md-6 col-lg-4">
+                <div class="scale-card">
                     <div class="scale-value">8</div>
                     <div class="scale-title">Construir Casa Pequena</div>
-                    <div class="scale-description">
-                        Tarefa muito complexa com muitas dependências. Afeta múltiplos módulos e requer coordenação.
-                        Exemplo: Reestruturar banco de dados, migração de sistema.
-                    </div>
+                    <div class="scale-description">Muito complexa com muitas dependências. Afeta múltiplos módulos.</div>
                 </div>
-                
-                <div class="scale-item" style="border-color: #ef4444;">
+            </div>
+            <div class="col-md-6 col-lg-4">
+                <div class="scale-card" style="border-color: #ef4444; border-left-color: #ef4444;">
                     <div class="scale-value" style="color: #ef4444;">13+</div>
                     <div class="scale-title">Precisa Quebrar!</div>
-                    <div class="scale-description">
-                        Épico muito grande. Deve ser fatiado em histórias menores antes de ser estimado e desenvolvido.
-                        Indica necessidade de decomposição da tarefa.
-                    </div>
+                    <div class="scale-description">Épico muito grande. Deve ser fatiado em histórias menores.</div>
                 </div>
-            </div>
-            
-            <div class="highlight-box">
-                <p><strong>⚠️ Regra de Ouro:</strong> Se a história receber muitos votos acima de 8, é sinal de que 
-                ela precisa ser quebrada em histórias menores e mais gerenciáveis.</p>
             </div>
         </div>
-        
-        <div class="content-section">
-            <h2>Como Funciona?</h2>
-            
-            <div class="flow-diagram">
-                <div class="flow-step">
-                    <span class="step-number">1</span>
-                    <div>
-                        <strong>Scrum Master Cria Sessão</strong><br>
-                        O SM inicia uma nova sessão de Planning Poker e recebe um código único para compartilhar.
+
+        <div class="highlight-box">
+            <h5><i class="fas fa-exclamation-triangle"></i> Regra de Ouro</h5>
+            <p class="mb-0">Se a história receber muitos votos acima de 8, é sinal de que ela precisa ser quebrada em histórias menores e mais gerenciáveis.</p>
+        </div>
+
+        <!-- Como Funciona -->
+        <h2 class="section-title mt-5"><i class="fas fa-cogs"></i> Como Funciona?</h2>
+        <div class="row">
+            <div class="col-12">
+                <div class="step-box">
+                    <div style="display: flex; align-items: flex-start;">
+                        <span class="step-number">1</span>
+                        <div>
+                            <h5>Scrum Master Cria Sessão</h5>
+                            <p class="text-muted mb-0">O SM inicia uma nova sessão e recebe um código único para compartilhar com o time.</p>
+                        </div>
                     </div>
                 </div>
-                
-                <div class="flow-arrow">↓</div>
-                
-                <div class="flow-step">
-                    <span class="step-number">2</span>
-                    <div>
-                        <strong>Time se Conecta</strong><br>
-                        Membros do time entram na sessão usando o código fornecido e seus nomes.
+                <div style="text-align: center; color: var(--primary); font-size: 24px; margin: 10px 0;"><i class="fas fa-arrow-down"></i></div>
+
+                <div class="step-box">
+                    <div style="display: flex; align-items: flex-start;">
+                        <span class="step-number">2</span>
+                        <div>
+                            <h5>Time se Conecta</h5>
+                            <p class="text-muted mb-0">Membros do time entram na sessão usando o código fornecido.</p>
+                        </div>
                     </div>
                 </div>
-                
-                <div class="flow-arrow">↓</div>
-                
-                <div class="flow-step">
-                    <span class="step-number">3</span>
-                    <div>
-                        <strong>SM Apresenta História</strong><br>
-                        O Scrum Master cria uma história (user story) com título e descrição para ser estimada.
+                <div style="text-align: center; color: var(--primary); font-size: 24px; margin: 10px 0;"><i class="fas fa-arrow-down"></i></div>
+
+                <div class="step-box">
+                    <div style="display: flex; align-items: flex-start;">
+                        <span class="step-number">3</span>
+                        <div>
+                            <h5>SM Apresenta História</h5>
+                            <p class="text-muted mb-0">O Scrum Master cria uma história com título e descrição para ser estimada.</p>
+                        </div>
                     </div>
                 </div>
-                
-                <div class="flow-arrow">↓</div>
-                
-                <div class="flow-step">
-                    <span class="step-number">4</span>
-                    <div>
-                        <strong>Time Vota Simultaneamente</strong><br>
-                        Cada membro escolhe secretamente um valor da escala que representa seu entendimento da complexidade.
-                        Os votos ficam ocultos até serem revelados.
+                <div style="text-align: center; color: var(--primary); font-size: 24px; margin: 10px 0;"><i class="fas fa-arrow-down"></i></div>
+
+                <div class="step-box">
+                    <div style="display: flex; align-items: flex-start;">
+                        <span class="step-number">4</span>
+                        <div>
+                            <h5>Time Vota Simultaneamente</h5>
+                            <p class="text-muted mb-0">Cada membro escolhe secretamente um valor que representa sua compreensão da complexidade.</p>
+                        </div>
                     </div>
                 </div>
-                
-                <div class="flow-arrow">↓</div>
-                
-                <div class="flow-step">
-                    <span class="step-number">5</span>
-                    <div>
-                        <strong>SM Revela os Votos</strong><br>
-                        Quando todos votarem, o SM revela os votos. A aplicação mostra cada voto e calcula 
-                        automaticamente a média e mediana.
+                <div style="text-align: center; color: var(--primary); font-size: 24px; margin: 10px 0;"><i class="fas fa-arrow-down"></i></div>
+
+                <div class="step-box">
+                    <div style="display: flex; align-items: flex-start;">
+                        <span class="step-number">5</span>
+                        <div>
+                            <h5>SM Revela os Votos</h5>
+                            <p class="text-muted mb-0">Quando todos votarem, o SM revela os votos e a aplicação mostra média e mediana.</p>
+                        </div>
                     </div>
                 </div>
-                
-                <div class="flow-arrow">↓</div>
-                
-                <div class="flow-step">
-                    <span class="step-number">6</span>
-                    <div>
-                        <strong>Discussão e Consenso</strong><br>
-                        Se houver discrepância (votos muito diferentes), a equipe discute. Quem votou mais alto 
-                        e mais baixo explica suas razões. Isso revela aspectos importantes da tarefa.
+                <div style="text-align: center; color: var(--primary); font-size: 24px; margin: 10px 0;"><i class="fas fa-arrow-down"></i></div>
+
+                <div class="step-box">
+                    <div style="display: flex; align-items: flex-start;">
+                        <span class="step-number">6</span>
+                        <div>
+                            <h5>Discussão e Consenso</h5>
+                            <p class="text-muted mb-0">A equipe discute votos discrepantes. Quem votou diferente explica suas razões.</p>
+                        </div>
                     </div>
                 </div>
-                
-                <div class="flow-arrow">↓</div>
-                
-                <div class="flow-step">
-                    <span class="step-number">7</span>
-                    <div>
-                        <strong>Re-votação (se necessário)</strong><br>
-                        Após a discussão, pode-se fazer uma nova rodada de votação ou o SM pode reiniciar a votação.
-                    </div>
-                </div>
-                
-                <div class="flow-arrow">↓</div>
-                
-                <div class="flow-step">
-                    <span class="step-number">8</span>
-                    <div>
-                        <strong>Finalização</strong><br>
-                        Quando houver consenso, o SM finaliza a história registrando a pontuação final acordada.
+                <div style="text-align: center; color: var(--primary); font-size: 24px; margin: 10px 0;"><i class="fas fa-arrow-down"></i></div>
+
+                <div class="step-box">
+                    <div style="display: flex; align-items: flex-start;">
+                        <span class="step-number">7</span>
+                        <div>
+                            <h5>Finalização</h5>
+                            <p class="text-muted mb-0">Quando há consenso, o SM finaliza a história registrando a pontuação final acordada.</p>
+                        </div>
                     </div>
                 </div>
             </div>
         </div>
-        
-        <div class="content-section">
-            <h2>Papéis na Aplicação</h2>
-            
-            <h3>👨‍💼 Scrum Master (SM)</h3>
-            <ul>
-                <li>Cria e gerencia a sessão de Planning Poker</li>
-                <li>Cria histórias com título e descrição</li>
-                <li>Monitora quem já votou (sem ver os votos)</li>
-                <li>Decide quando revelar os votos</li>
-                <li>Pode reiniciar votações se necessário</li>
-                <li>Finaliza histórias com pontuação consensuada</li>
-                <li>Acompanha participantes online</li>
-            </ul>
-            
-            <h3>👥 Time de Desenvolvimento</h3>
-            <ul>
-                <li>Entra na sessão usando código fornecido</li>
-                <li>Visualiza história atual apresentada pelo SM</li>
-                <li>Vota na complexidade/esforço da história</li>
-                <li>Pode alterar seu voto antes da revelação</li>
-                <li>Vê resultados após revelação pelo SM</li>
-                <li>Participa das discussões para consenso</li>
-            </ul>
-        </div>
-        
-        <div class="content-section">
-            <h2>Recursos da Aplicação</h2>
-            
-            <h3>✨ Funcionalidades Principais</h3>
-            <ul>
-                <li><strong>Votação Oculta:</strong> Votos ficam secretos até revelação, evitando viés de ancoragem</li>
-                <li><strong>Atualização em Tempo Real:</strong> Interface atualiza automaticamente mostrando novos votos e participantes</li>
-                <li><strong>Estatísticas Automáticas:</strong> Cálculo de média e mediana dos votos</li>
-                <li><strong>Lista de Participantes:</strong> Veja quem está online na sessão</li>
-                <li><strong>Histórico de Histórias:</strong> Todas as histórias votadas ficam registradas</li>
-                <li><strong>Múltiplas Sessões:</strong> Várias equipes podem usar simultaneamente com códigos únicos</li>
-                <li><strong>Sem Cadastro:</strong> Não requer criação de contas, apenas nome e código</li>
-                <li><strong>Design Responsivo:</strong> Funciona perfeitamente em desktop, tablet e celular</li>
-            </ul>
-            
-            <h3>🔒 Privacidade e Segurança</h3>
-            <ul>
-                <li>Dados armazenados localmente no servidor</li>
-                <li>Banco de dados SQLite isolado</li>
-                <li>Sessões PHP para autenticação básica</li>
-                <li>Proteção contra SQL Injection e XSS</li>
-            </ul>
-        </div>
-        
-        <div class="content-section">
-            <h2>Dicas para Boas Estimativas</h2>
-            
-            <div class="highlight-box">
-                <h3 style="margin-top: 0;">📌 Melhores Práticas</h3>
-                <ol>
-                    <li><strong>Estimem esforço, não tempo:</strong> Foque na complexidade relativa, não em horas/dias</li>
-                    <li><strong>Use histórias de referência:</strong> Compare com tarefas similares já realizadas</li>
-                    <li><strong>Discuta discrepâncias:</strong> Votos muito diferentes revelam entendimentos distintos</li>
-                    <li><strong>Mantenha histórias pequenas:</strong> Evite histórias maiores que 8 pontos</li>
-                    <li><strong>Vote honestamente:</strong> Não deixe que votos anteriores influenciem o seu</li>
-                    <li><strong>Faça perguntas:</strong> Tire dúvidas antes de votar</li>
-                    <li><strong>Time completo:</strong> Inclua todos desenvolvedores, testadores e designers</li>
-                    <li><strong>Seja consistente:</strong> Use sempre a mesma escala e critérios</li>
-                </ol>
+
+        <!-- Papéis -->
+        <h2 class="section-title mt-5"><i class="fas fa-users"></i> Papéis na Aplicação</h2>
+        <div class="row">
+            <div class="col-lg-6">
+                <div class="role-card">
+                    <h4><i class="fas fa-user-tie"></i> Scrum Master</h4>
+                    <ul class="list-unstyled">
+                        <li><i class="fas fa-check text-success"></i> Cria e gerencia a sessão</li>
+                        <li><i class="fas fa-check text-success"></i> Cria histórias com título e descrição</li>
+                        <li><i class="fas fa-check text-success"></i> Monitora quem já votou</li>
+                        <li><i class="fas fa-check text-success"></i> Decide quando revelar os votos</li>
+                        <li><i class="fas fa-check text-success"></i> Pode reiniciar votações</li>
+                        <li><i class="fas fa-check text-success"></i> Finaliza histórias com pontuação</li>
+                    </ul>
+                </div>
+            </div>
+            <div class="col-lg-6">
+                <div class="role-card">
+                    <h4><i class="fas fa-users"></i> Time de Desenvolvimento</h4>
+                    <ul class="list-unstyled">
+                        <li><i class="fas fa-check text-success"></i> Entra na sessão com código</li>
+                        <li><i class="fas fa-check text-success"></i> Visualiza histórias do SM</li>
+                        <li><i class="fas fa-check text-success"></i> Vota na complexidade</li>
+                        <li><i class="fas fa-check text-success"></i> Pode alterar seu voto</li>
+                        <li><i class="fas fa-check text-success"></i> Vê resultados após revelação</li>
+                        <li><i class="fas fa-check text-success"></i> Participa das discussões</li>
+                    </ul>
+                </div>
             </div>
         </div>
-        
-        <div class="content-section">
-            <h2>Tecnologias Utilizadas</h2>
-            <p>Esta aplicação foi desenvolvida com tecnologias web simples e eficientes:</p>
-            <ul>
-                <li><strong>HTML5:</strong> Estrutura semântica das páginas</li>
-                <li><strong>CSS3:</strong> Estilização moderna e responsiva</li>
-                <li><strong>JavaScript (Vanilla):</strong> Interatividade e comunicação com API</li>
-                <li><strong>PHP:</strong> Backend e API REST</li>
-                <li><strong>SQLite:</strong> Banco de dados leve e portátil</li>
-            </ul>
-            <p>
-                A aplicação não requer dependências externas, frameworks pesados ou instalação de pacotes. 
-                Basta ter PHP com SQLite habilitado e você está pronto para usar!
-            </p>
+
+        <!-- Recursos -->
+        <h2 class="section-title mt-5"><i class="fas fa-star"></i> Recursos da Aplicação</h2>
+        <div class="row g-4">
+            <div class="col-md-6">
+                <div class="card h-100">
+                    <div class="card-body">
+                        <h5 class="card-title"><i class="fas fa-lock text-primary"></i> Votação Oculta</h5>
+                        <p class="card-text text-muted">Votos ficam secretos até revelação, evitando viés de ancoragem</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="card h-100">
+                    <div class="card-body">
+                        <h5 class="card-title"><i class="fas fa-sync text-primary"></i> Tempo Real</h5>
+                        <p class="card-text text-muted">Interface atualiza automaticamente com novos votos</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="card h-100">
+                    <div class="card-body">
+                        <h5 class="card-title"><i class="fas fa-chart-line text-primary"></i> Estatísticas</h5>
+                        <p class="card-text text-muted">Cálculo automático de média e mediana dos votos</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="card h-100">
+                    <div class="card-body">
+                        <h5 class="card-title"><i class="fas fa-users-alt text-primary"></i> Participantes</h5>
+                        <p class="card-text text-muted">Veja quem está online na sessão em tempo real</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="card h-100">
+                    <div class="card-body">
+                        <h5 class="card-title"><i class="fas fa-history text-primary"></i> Histórico</h5>
+                        <p class="card-text text-muted">Todas as histórias votadas ficam registradas</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="card h-100">
+                    <div class="card-body">
+                        <h5 class="card-title"><i class="fas fa-mobile-alt text-primary"></i> Responsivo</h5>
+                        <p class="card-text text-muted">Funciona perfeitamente em desktop, tablet e celular</p>
+                    </div>
+                </div>
+            </div>
         </div>
-        
-        <div class="content-section" style="text-align: center; background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); color: white;">
-            <h2 style="color: white; border-bottom-color: white;">Pronto para Começar?</h2>
-            <p style="color: white; font-size: 18px;">
-                Comece a estimar suas histórias de forma colaborativa e eficiente!
-            </p>
-            <a href="index.php" class="btn btn-primary" style="background: white; color: #667eea; margin-top: 20px; display: inline-block;">
-                Criar Planning Poker Agora
-            </a>
+
+        <!-- Dicas -->
+        <h2 class="section-title mt-5"><i class="fas fa-lightbulb"></i> Dicas para Boas Estimativas</h2>
+        <div class="highlight-box">
+            <ol>
+                <li><strong>Estimem esforço, não tempo:</strong> Foque na complexidade relativa</li>
+                <li><strong>Use histórias de referência:</strong> Compare com tarefas similares</li>
+                <li><strong>Discuta discrepâncias:</strong> Votos diferentes revelam perspectivas diferentes</li>
+                <li><strong>Mantenha histórias pequenas:</strong> Evite histórias maiores que 8 pontos</li>
+                <li><strong>Vote honestamente:</strong> Não deixe votos anteriores influenciar o seu</li>
+                <li><strong>Faça perguntas:</strong> Tire dúvidas antes de votar</li>
+                <li><strong>Time completo:</strong> Inclua todos desenvolvedores, testadores e designers</li>
+                <li><strong>Seja consistente:</strong> Use sempre a mesma escala e critérios</li>
+            </ol>
+        </div>
+
+        <!-- CTA -->
+        <div class="card mt-5" style="background: linear-gradient(135deg, var(--primary) 0%, var(--secondary) 100%); color: white; border: none;">
+            <div class="card-body text-center py-5">
+                <h2 class="mb-3"><i class="fas fa-rocket"></i> Pronto para Começar?</h2>
+                <p class="lead mb-4">Comece a estimar suas histórias de forma colaborativa e eficiente!</p>
+                <a href="index.php" class="btn btn-light btn-lg">
+                    <i class="fas fa-plus-circle"></i> Criar Planning Poker Agora
+                </a>
+            </div>
         </div>
     </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 </html>
