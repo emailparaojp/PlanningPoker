@@ -1,0 +1,23 @@
+# Habilitar rewrite engine
+RewriteEngine On
+
+# Página inicial
+DirectoryIndex index.php
+
+# Proteger diretório database
+<Files "*.db">
+    Order allow,deny
+    Deny from all
+</Files>
+
+# Proteger arquivos de configuração
+<Files ".htaccess">
+    Order allow,deny
+    Deny from all
+</Files>
+
+# Configurações de PHP
+php_value upload_max_filesize 10M
+php_value post_max_size 10M
+php_value max_execution_time 300
+php_value max_input_time 300
