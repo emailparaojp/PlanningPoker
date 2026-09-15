@@ -71,6 +71,38 @@ function joinSession() {
     });
 }
 
+function leaveSession() {
+    const isScrumMaster = typeof isSM !== 'undefined' && isSM;
+    const message = isScrumMaster
+        ? 'Deseja encerrar esta sessão? O código deixará de ser válido e os participantes serão desconectados.'
+        : 'Deseja realmente sair desta sessão? Seu voto atual será removido.';
+
+    if (!confirm(message)) {
+        return;
+    }
+
+    const controller = new AbortController();
+    const timeoutId = setTimeout(() => controller.abort(), 10000);
+
+    fetch('api/api.php?action=leave_session', {
+        method: 'POST',
+        signal: controller.signal
+    })
+    .then(r => r.json())
+    .then(data => {
+        clearTimeout(timeoutId);
+        if (data.success) {
+            window.location.href = 'index.php';
+        } else {
+            alert(data.message || 'Não foi possível sair da sessão');
+        }
+    })
+    .catch(() => {
+        clearTimeout(timeoutId);
+        alert('Erro ao sair da sessão');
+    });
+}
+
 function loadParticipants() {
     const list = document.getElementById('participantsList');
     if (!list) return;

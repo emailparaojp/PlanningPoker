@@ -8,9 +8,21 @@ $db = getDB();
 
 // Validar sessão para ações que precisam
 function requireSession() {
+    global $db;
+
     if (!isset($_SESSION['session_id']) || !isset($_SESSION['user_name'])) {
         http_response_code(401);
         exit(json_encode(['success' => false, 'message' => 'Sessão inválida']));
+    }
+
+    $stmt = $db->prepare('SELECT active FROM sessions WHERE id = :session_id');
+    $stmt->bindValue(':session_id', $_SESSION['session_id'], SQLITE3_INTEGER);
+    $result = $stmt->execute();
+    $session = $result->fetchArray(SQLITE3_ASSOC);
+
+    if (!$session || (int)$session['active'] !== 1) {
+        http_response_code(401);
+        exit(json_encode(['success' => false, 'message' => 'Sessão encerrada']));
     }
 }
 
@@ -75,6 +87,42 @@ try {
             $stmt->execute();
             
             echo json_encode(['success' => true, 'session_id' => $session['id']]);
+            break;
+
+        case 'leave_session':
+            requireSession();
+            $session_id = $_SESSION['session_id'];
+            $user_name = $_SESSION['user_name'];
+            $is_sm = !empty($_SESSION['is_sm']);
+
+            if ($is_sm) {
+                $stmt = $db->prepare('UPDATE sessions SET active = 0 WHERE id = :session_id');
+                $stmt->bindValue(':session_id', $session_id, SQLITE3_INTEGER);
+                $stmt->execute();
+
+                $stmt = $db->prepare('DELETE FROM participants WHERE session_id = :session_id');
+                $stmt->bindValue(':session_id', $session_id, SQLITE3_INTEGER);
+                $stmt->execute();
+            }
+
+            $stmt = $db->prepare('DELETE FROM votes WHERE voter_name = :name AND story_id IN (SELECT id FROM stories WHERE session_id = :session_id)');
+            $stmt->bindValue(':name', $user_name, SQLITE3_TEXT);
+            $stmt->bindValue(':session_id', $session_id, SQLITE3_INTEGER);
+            $stmt->execute();
+
+            $stmt = $db->prepare('DELETE FROM participants WHERE session_id = :session_id AND name = :name');
+            $stmt->bindValue(':session_id', $session_id, SQLITE3_INTEGER);
+            $stmt->bindValue(':name', $user_name, SQLITE3_TEXT);
+            $stmt->execute();
+
+            $_SESSION = [];
+            if (ini_get('session.use_cookies')) {
+                $params = session_get_cookie_params();
+                setcookie(session_name(), '', time() - 42000, $params['path'], $params['domain'], $params['secure'], $params['httponly']);
+            }
+            session_destroy();
+
+            echo json_encode(['success' => true]);
             break;
             
         case 'create_story':

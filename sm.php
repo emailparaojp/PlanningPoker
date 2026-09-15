@@ -65,6 +65,9 @@ $db->close();
                 <span class="session-badge">
                     <i class="fas fa-code"></i> <?php echo htmlspecialchars($session['code']); ?>
                 </span>
+                <button type="button" class="btn btn-outline-light btn-sm ms-2" onclick="leaveSession()">
+                    <i class="fas fa-sign-out-alt"></i> Sair
+                </button>
             </div>
         </div>
     </nav>
