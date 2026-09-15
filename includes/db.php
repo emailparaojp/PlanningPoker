@@ -8,8 +8,16 @@ function getDB() {
     }
     
     $db = new SQLite3($db_file);
+    $db->busyTimeout(15000);
     
-    // Criar tabelas se não existirem
+    // Otimizações de performance
+    $db->exec('PRAGMA journal_mode = WAL');
+    $db->exec('PRAGMA synchronous = NORMAL');
+    $db->exec('PRAGMA foreign_keys = ON');
+    $db->exec('PRAGMA temp_store = MEMORY');
+    $db->exec('PRAGMA cache_size = 10000');
+    
+    // Criar tabelas
     $db->exec('
         CREATE TABLE IF NOT EXISTS sessions (
             id INTEGER PRIMARY KEY AUTOINCREMENT,
@@ -62,4 +70,12 @@ function getDB() {
 function generateSessionCode() {
     return strtoupper(substr(md5(uniqid(rand(), true)), 0, 6));
 }
+
+// Fechar conexão ao final
+register_shutdown_function(function() {
+    global $db;
+    if (isset($db) && $db) {
+        $db->close();
+    }
+});
 ?>
